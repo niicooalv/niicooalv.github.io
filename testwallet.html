@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Prueba Digital Credentials iPhone</title>
+</head>
+<body>
+<h1>Prueba Digital Credentials API</h1>
+<button id="btn">Pedir credencial</button>
+<pre id="output"></pre>
+
+<script>
+const output = document.getElementById("output");
+document.getElementById("btn").addEventListener("click", async () => {
+  try {
+    const cred = await navigator.credentials.get({
+      digital: {
+        requests: [
+          {
+            protocol: "org-iso-mdoc",
+            data: {
+              request: "dummy-nonce"
+            }
+          }
+        ]
+      }
+    });
+    output.textContent = JSON.stringify(cred, null, 2);
+  } catch (err) {
+    output.textContent = "Error: " + err.message;
+  }
+});
+</script>
+</body>
+</html>
