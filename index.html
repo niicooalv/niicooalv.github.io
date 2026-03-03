@@ -1,11 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Nico | Portfolio</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .construction-banner {
+            background-color: #dc3545;
+            color: white;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            animation: pulse 1.5s infinite;
+            gap: 10px;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .construction-banner i {
+            font-size: 1.5em;
+        }
+        
+        .container-main {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin-top: 30px;
+            padding: 40px;
+        }
+        
+        .hero-section {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 2px solid #667eea;
+            margin-bottom: 40px;
+        }
+        
+        .hero-section h1 {
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .hero-section p {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        .section-title {
+            color: #667eea;
+            font-weight: bold;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+            padding-left: 10px;
+        }
+        
+        .commit-card {
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: box-shadow 0.3s;
+            background-color: #f8f9fa;
+        }
+        
+        .commit-card:hover {
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+        
+        .commit-message {
+            color: #333;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        
+        .commit-meta {
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        .commit-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .commit-link:hover {
+            text-decoration: underline;
+        }
+        
+        .linkedin-card {
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            background-color: #f8f9fa;
+            border-left: 4px solid #0077b5;
+        }
+        
+        .linkedin-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .linkedin-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #667eea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .linkedin-info h5 {
+            margin: 0;
+            color: #333;
+        }
+        
+        .linkedin-info p {
+            margin: 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        .linkedin-content {
+            color: #333;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .social-links {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #667eea;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            line-height: 40px;
+            margin: 0 10px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: #764ba2;
+            text-decoration: none;
+        }
+        
+        .loading {
+            text-align: center;
+            color: #667eea;
+        }
+        
+        .spinner-border {
+            color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <!-- Banner de construcción -->
+    <div class="construction-banner">
+        <i class="fas fa-person-hiking-wheel"></i>
+        <span>⚠️ SITIO WEB EN CONSTRUCCIÓN - Vuelve pronto</span>
+        <i class="fas fa-hammer"></i>
+    </div>
 
-<html>
-    <head>
-        <title>Error 404</title>
-    </head>
-    <body>
-        <p>Error</p>
-        <p>Aqui no hay nada que ver aun vuelva más tarde</p>
+    <div class="container container-main">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <h1>👋 ¡Hola! Soy Nico</h1>
+            <p>Desarrollador | Apasionado por la tecnología | En construcción 🚧</p>
+        </div>
 
-    </body>
+        <!-- GitHub Commits Section -->
+        <h2 class="section-title">📊 Últimos Commits de GitHub</h2>
+        <div id="github-commits" class="loading">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Cargando...</span>
+            </div>
+            <p>Cargando commits...</p>
+        </div>
+
+        <!-- LinkedIn Posts Section -->
+        <h2 class="section-title">💼 Últimas Publicaciones</h2>
+        <div id="linkedin-posts">
+            <!-- Posts simulados mientras se configura la API -->
+            <div class="linkedin-card">
+                <div class="linkedin-header">
+                    <div class="linkedin-avatar">N</div>
+                    <div class="linkedin-info">
+                        <h5>Nico (@niicooalv)</h5>
+                        <p>Hace 2 días</p>
+                    </div>
+                </div>
+                <div class="linkedin-content">
+                    🚀 Actualizando mi sitio personal con nuevas tecnologías. ¡Gracias por visitarme!
+                </div>
+                <small style="color: #999;">
+                    <i class="fas fa-heart"></i> 45 me encanta
+                    <i class="fas fa-comment" style="margin-left: 15px;"></i> 8 comentarios
+                </small>
+            </div>
+        </div>
+
+        <!-- Social Links -->
+        <div class="social-links">
+            <a href="https://github.com/niicooalv" title="GitHub" target="_blank">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://linkedin.com/in/niicooalv" title="LinkedIn" target="_blank">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://twitter.com/niicooalv_05" title="Twitter" target="_blank">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://threads.net/niicooalv_05" title="Threads" target="_blank">
+                <i class="fab fa-threads"></i>
+            </a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Fetch últimos commits de GitHub
+        async function fetchGitHubCommits() {
+            try {
+                const response = await fetch('https://api.github.com/repos/niicooalv/niicooalv.github.io/commits?per_page=7');
+                const commits = await response.json();
+                
+                let commitsHTML = '';
+                commits.forEach(commit => {
+                    const date = new Date(commit.commit.author.date).toLocaleDateString('es-ES');
+                    const message = commit.commit.message.split('\n')[0];
+                    
+                    commitsHTML += `
+                        <div class="commit-card">
+                            <div class="commit-message">
+                                <i class="fas fa-code-branch"></i> ${message}
+                            </div>
+                            <div class="commit-meta">
+                                👤 ${commit.commit.author.name} | 📅 ${date}
+                            </div>
+                            <div style="margin-top: 8px;">
+                                <a href="${commit.html_url}" target="_blank" class="commit-link">
+                                    Ver commit <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                document.getElementById('github-commits').innerHTML = commitsHTML;
+            } catch (error) {
+                document.getElementById('github-commits').innerHTML = `
+                    <div class="alert alert-warning">
+                        No se pudieron cargar los commits. Intenta más tarde.
+                    </div>
+                `;
+                console.error('Error fetching commits:', error);
+            }
+        }
+
+        // Ejecutar al cargar la página
+        document.addEventListener('DOMContentLoaded', fetchGitHubCommits);
+    </script>
+</body>
 </html>
